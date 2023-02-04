@@ -9,18 +9,12 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "RigidBody2D",
-"class": "Player",
-"language": "GDScript",
-"path": "res://PlayerCharracterRigidBody.gd"
-}, {
 "base": "StaticBody2D",
 "class": "Trampoline",
 "language": "GDScript",
 "path": "res://Trampoline.gd"
 } ]
 _global_script_class_icons={
-"Player": "",
 "Trampoline": ""
 }
 

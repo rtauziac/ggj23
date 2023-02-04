@@ -56,7 +56,7 @@ collision_layer = 3
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
 current = true
-zoom = Vector2( 5, 5 )
+zoom = Vector2( 2, 2 )
 
 [node name="Sprite" parent="." instance=ExtResource( 5 )]
 scale = Vector2( 0.266, 0.266 )
