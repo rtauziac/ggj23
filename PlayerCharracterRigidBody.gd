@@ -5,7 +5,7 @@ export (float) var WALK_SPEED = 1000
 export (float) var JUMP_STRENGTH = 12000
 
 export (float) var TRAMPOLINE_STRENGTH = 5000
-export var collidersss = []
+export var colliders = []
 
 
 # Called when the node enters the scene tree for the first time.
@@ -33,8 +33,8 @@ func _physics_process(delta):
 		velocity.y = -JUMP_STRENGTH
 
 #	Trampoline
-	collidersss = get_colliding_bodies()
-	if collidersss.size() > 0 && collidersss[0] is Trampoline:
+	colliders = get_colliding_bodies()
+	if colliders.size() > 0 && colliders[0] is Trampoline:
 		velocity.y = -TRAMPOLINE_STRENGTH
 
 	#Forces applying

@@ -78,7 +78,6 @@ texture = ExtResource( 3 )
 [node name="MovingPlatform" type="RigidBody2D" parent="."]
 position = Vector2( -289, 898 )
 mode = 3
-mass = 5e-05
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
