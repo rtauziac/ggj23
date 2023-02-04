@@ -1,13 +1,15 @@
 extends KinematicBody2D
 
-const GRAVITY = 200.0
-const WALK_SPEED = 200
+export var GRAVITY = 1200
+export var WALK_SPEED = 200
+export var JUMP_SPEED = -400
+
+var isJumping = false
 
 var velocity = Vector2()
 
 func _physics_process(delta):
-	velocity.y += delta * GRAVITY
-
+	# Lateral movement
 	if Input.is_action_pressed("moveLeft"):
 		velocity.x = -WALK_SPEED
 	elif Input.is_action_pressed("moveRight"):
@@ -15,8 +17,17 @@ func _physics_process(delta):
 	else:
 		velocity.x = 0
 
-	# We don't need to multiply velocity by delta because "move_and_slide" already takes delta time into account.
+	#Jump
+	if Input.is_action_pressed("jump") && is_on_floor():
+		isJumping = true
+		velocity.y = JUMP_SPEED
 
-	# The second parameter of "move_and_slide" is the normal pointing up.
-	# In the case of a 2D platformer, in Godot, upward is negative y, which translates to -1 as a normal.
+	#if isJumping and is_on_floor():
+		#isJumping = false
+
+	#Gravity
+	velocity.y += delta * GRAVITY
+
 	move_and_slide_with_snap(velocity, Vector2(0, -1))
+	
+	print (is_on_floor())
