@@ -2,10 +2,13 @@ extends Node2D
 
 
 export (float, 0, 1) var smooth_movements: float = 0.1
+export (float, 0, 1) var water_damp = 0.95
 onready var _prev_pos: Vector2 = transform.origin
 var velocity: Vector2 = Vector2.ZERO
 var acceleration: Vector2 = Vector2.ZERO
 var _debug = true
+var water_amount: float = 10
+var _ang_vel: float = 0.0
 
 
 func _ready():
@@ -13,11 +16,16 @@ func _ready():
 
 
 func _process(delta):
+	var _vec_water: Vector2 = $Node2D/Node2D/Position2D.global_transform.origin - global_transform.origin
+	var _angle_grav = _vec_water.angle_to(Vector2.DOWN)
+#	print(_angle_grav)
+	_ang_vel += (_angle_grav * delta) * 0.4
+	_ang_vel = lerp(_ang_vel, 0, min(delta, 1))
+	$Node2D/Node2D.rotate(_ang_vel)
 	update()
 
 
 func _physics_process(delta):
-#	print(_prev_pos.distance_to(global_transform.origin - _prev_pos) < 0.0001)
 	var _new_velocity = lerp(velocity, (global_transform.origin - _prev_pos) * delta, smooth_movements)
 	acceleration = _new_velocity - velocity
 	velocity = _new_velocity

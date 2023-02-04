@@ -11,9 +11,9 @@ func _process(_delta):
 	
 	
 func _physics_process(delta):
-	var _bucket_accel: Vector2 = $bucketpinpoint/Bucket.acceleration
+	var _bucket_accel: Vector2 = $bucketpinpoint/bucket_empty.acceleration
 	var _lean_factor = abs(Vector2.UP.rotated(rotation).dot(Vector2.LEFT))
-	rotation = wrapf(rotation, -PI / 2.0, PI / 2.0)
+	rotation = clamp(rotation, -PI / 2.0, PI / 2.0)
 	var _rotate_amount = _bucket_accel.normalized().dot(Vector2.LEFT)
 	var _add_lean_amount = (_lean_factor * gravity_amount if rotation > 0 else -_lean_factor * gravity_amount) * delta
 	print("%f %f" % [_rotate_amount, _rotate_amount + _add_lean_amount])
