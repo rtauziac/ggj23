@@ -4,6 +4,9 @@ extends RigidBody2D
 export (float) var WALK_SPEED = 1000
 export (float) var JUMP_STRENGTH = 12000
 
+export (float) var TRAMPOLINE_STRENGTH = 5000
+export var collidersss = []
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,7 +32,10 @@ func _physics_process(delta):
 	if Input.is_action_pressed("jump") and linear_velocity.y == 0:
 		velocity.y = -JUMP_STRENGTH
 
+#	Trampoline
+	collidersss = get_colliding_bodies()
+	if collidersss.size() > 0 && collidersss[0] is Trampoline:
+		velocity.y = -TRAMPOLINE_STRENGTH
 
 	#Forces applying
 	apply_central_impulse(velocity * delta)
-
