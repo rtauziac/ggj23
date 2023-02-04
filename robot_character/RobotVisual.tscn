@@ -17,6 +17,7 @@
 [ext_resource path="res://robot_character/bucket/Bucket.tscn" type="PackedScene" id=15]
 
 [node name="RobotVisual" type="Node2D"]
+rotation = 0.0349066
 script = ExtResource( 14 )
 
 [node name="shadow" type="Sprite" parent="."]

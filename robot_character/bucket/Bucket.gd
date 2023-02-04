@@ -22,7 +22,6 @@ func _physics_process(delta):
 	acceleration = _new_velocity - velocity
 	velocity = _new_velocity
 	_prev_pos = global_transform.origin
-	print(acceleration)
 
 
 func _draw():
