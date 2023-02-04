@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://robot_character/PlayerCharacterRigidBody.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Trampoline.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://robot_character/RobotVisual.tscn" type="PackedScene" id=5]
 [ext_resource path="res://clock.gd" type="Script" id=6]
 [ext_resource path="res://MovingPlatform.gd" type="Script" id=7]
+[ext_resource path="res://TpToLevelBegining.gd" type="Script" id=8]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 512, 24 )
@@ -17,10 +18,13 @@ radius = 150.0
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 237, 23 )
 
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 106, 46.5 )
+
 [node name="root" type="Node2D"]
 
 [node name="Platform" type="StaticBody2D" parent="."]
-position = Vector2( 512, 577 )
+position = Vector2( 501, 625 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -48,6 +52,7 @@ polygon = PoolVector2Array( -512, -25, -512, 24, 513, 24, 512, -25 )
 
 [node name="PlayerCharacter" parent="." instance=ExtResource( 1 )]
 position = Vector2( 470, 520 )
+collision_layer = 3
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
 current = true
@@ -58,7 +63,7 @@ scale = Vector2( 0.266, 0.266 )
 robot_wheel = NodePath("../PlayerCharacter")
 
 [node name="Clock" type="Node2D" parent="."]
-position = Vector2( 338, 60 )
+position = Vector2( -140, 44 )
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true
@@ -91,7 +96,20 @@ texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MovingPlatform"]
 shape = SubResource( 5 )
+one_way_collision = true
 
 [node name="Tween" type="Tween" parent="MovingPlatform"]
 
+[node name="TpToLevelBegining" type="Area2D" parent="."]
+position = Vector2( 109, 504 )
+collision_mask = 2
+script = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TpToLevelBegining"]
+shape = SubResource( 6 )
+
+[node name="Position2D" type="Position2D" parent="TpToLevelBegining"]
+position = Vector2( 826, -414 )
+
 [connection signal="tween_completed" from="MovingPlatform/Tween" to="MovingPlatform" method="_on_Tween_tween_completed"]
+[connection signal="body_entered" from="TpToLevelBegining" to="TpToLevelBegining" method="_on_TpToLevelBegining_body_entered"]
