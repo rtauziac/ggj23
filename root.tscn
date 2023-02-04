@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://robot_character/PlayerCharacterRigidBody.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Trampoline.gd" type="Script" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://Tige.gd" type="Script" id=4]
 [ext_resource path="res://robot_character/RobotVisual.tscn" type="PackedScene" id=5]
 [ext_resource path="res://clock.gd" type="Script" id=6]
 
@@ -9,11 +11,12 @@
 extents = Vector2( 512, 24 )
 
 [sub_resource type="CircleShape2D" id=4]
+radius = 150.0
 
 [node name="root" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2( 518, 558 )
+position = Vector2( 512, 577 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -24,32 +27,8 @@ shape = SubResource( 2 )
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionShape2D"]
 polygon = PoolVector2Array( -512, -25, -512, 24, 513, 24, 512, -25 )
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2( 1029, 130 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-shape = SubResource( 2 )
-
-[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D2/CollisionShape2D"]
-polygon = PoolVector2Array( -512, -25, -512, 24, 513, 24, 512, -25 )
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2( -158, 260 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-shape = SubResource( 2 )
-
-[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D3/CollisionShape2D"]
-polygon = PoolVector2Array( -512, -25, -512, 24, 513, 24, 512, -25 )
-
 [node name="Trampoline" type="StaticBody2D" parent="."]
-position = Vector2( 1011, 425 )
+position = Vector2( 1230, 450 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -63,22 +42,30 @@ one_way_collision = true
 color = Color( 1, 0.631373, 0, 1 )
 polygon = PoolVector2Array( -512, -25, -512, 24, 513, 24, 512, -25 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 516, 302 )
-current = true
-
 [node name="PlayerCharacter" parent="." instance=ExtResource( 1 )]
+position = Vector2( 795, 169 )
+
+[node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
+current = true
 
 [node name="Sprite" parent="." instance=ExtResource( 5 )]
 scale = Vector2( 0.266, 0.266 )
 robot_wheel = NodePath("../PlayerCharacter")
 
-[node name="clock" type="KinematicBody2D" parent="."]
-position = Vector2( 302, 404 )
-script = ExtResource( 6 )
+[node name="Clock" type="Node2D" parent="."]
+position = Vector2( 338, 60 )
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="clock"]
+[node name="Circle" type="KinematicBody2D" parent="Clock"]
+position = Vector2( -226, 136 )
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Clock/Circle"]
 shape = SubResource( 4 )
+
+[node name="Tige" type="Sprite" parent="Clock"]
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 3 )
