@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://robot_character/PlayerCharacterRigidBody.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Trampoline.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Tige.gd" type="Script" id=4]
 [ext_resource path="res://robot_character/RobotVisual.tscn" type="PackedScene" id=5]
 [ext_resource path="res://clock.gd" type="Script" id=6]
+[ext_resource path="res://MovingPlatform.gd" type="Script" id=7]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 512, 24 )
@@ -13,18 +14,21 @@ extents = Vector2( 512, 24 )
 [sub_resource type="CircleShape2D" id=4]
 radius = 150.0
 
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 237, 23 )
+
 [node name="root" type="Node2D"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Platform" type="StaticBody2D" parent="."]
 position = Vector2( 512, 577 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
 shape = SubResource( 2 )
 
-[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionShape2D"]
+[node name="Polygon2D" type="Polygon2D" parent="Platform/CollisionShape2D"]
 polygon = PoolVector2Array( -512, -25, -512, 24, 513, 24, 512, -25 )
 
 [node name="Trampoline" type="StaticBody2D" parent="."]
@@ -47,6 +51,7 @@ position = Vector2( 470, 520 )
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
 current = true
+zoom = Vector2( 5, 5 )
 
 [node name="Sprite" parent="." instance=ExtResource( 5 )]
 scale = Vector2( 0.266, 0.266 )
@@ -69,3 +74,25 @@ shape = SubResource( 4 )
 [node name="Tige" type="Sprite" parent="Clock"]
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 3 )
+
+[node name="MovingPlatform" type="RigidBody2D" parent="."]
+position = Vector2( -289, 898 )
+mode = 3
+mass = 5e-05
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+finishPosition = Vector2( 300, 500 )
+
+[node name="Sprite" type="Sprite" parent="MovingPlatform"]
+position = Vector2( -7.62939e-06, 1.00001 )
+scale = Vector2( 7.40625, 0.71875 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MovingPlatform"]
+shape = SubResource( 5 )
+
+[node name="Tween" type="Tween" parent="MovingPlatform"]
+
+[connection signal="tween_completed" from="MovingPlatform/Tween" to="MovingPlatform" method="_on_Tween_tween_completed"]
