@@ -43,7 +43,7 @@ color = Color( 1, 0.631373, 0, 1 )
 polygon = PoolVector2Array( -512, -25, -512, 24, 513, 24, 512, -25 )
 
 [node name="PlayerCharacter" parent="." instance=ExtResource( 1 )]
-position = Vector2( 795, 169 )
+position = Vector2( 470, 520 )
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
 current = true
