@@ -16,6 +16,8 @@ func _ready():
 
 
 func _process(delta):
+	if $Node2D/Node2D/Position2D == null:
+		return
 	var _vec_water: Vector2 = $Node2D/Node2D/Position2D.global_transform.origin - global_transform.origin
 	var _angle_grav = _vec_water.angle_to(Vector2.DOWN)
 #	print(_angle_grav)
