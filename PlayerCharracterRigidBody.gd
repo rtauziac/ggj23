@@ -2,9 +2,7 @@ extends RigidBody2D
 
 
 export (float) var WALK_SPEED = 1000
-export (float) var JUMP_SPEED = 10
-
-var isJumping = false
+export (float) var JUMP_STRENGTH = 12000
 
 
 # Called when the node enters the scene tree for the first time.
@@ -14,24 +12,24 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):dddzzd
-#	pass
+#	passddddddddddddddz
 
 
 func _physics_process(delta):
 	#Init
-	var horVelocity = Vector2.ZERO
+	var velocity = Vector2.ZERO
 	
 	# Lateral movement
 	if Input.is_action_pressed("moveLeft"):
-		horVelocity.x -= 1
+		velocity.x -= WALK_SPEED
 	if Input.is_action_pressed("moveRight"):
-		horVelocity.x +=  1
-	apply_central_impulse(horVelocity * WALK_SPEED * delta)
+		velocity.x += WALK_SPEED
 	
 	#Jump
-	if Input.is_action_pressed("jump") && not isJumping:
-		isJumping = true
-		apply_central_impulse(Vector2(0, -1 * JUMP_SPEED))
+	if Input.is_action_pressed("jump") and linear_velocity.y == 0:
+		velocity.y = -JUMP_STRENGTH
 
 
+	#Forces applying
+	apply_central_impulse(velocity * delta)
 

@@ -69,7 +69,7 @@ current = true
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 position = Vector2( 204, 182 )
-mass = 0.1
+mass = 0.2
 contacts_reported = 4
 contact_monitor = true
 can_sleep = false
