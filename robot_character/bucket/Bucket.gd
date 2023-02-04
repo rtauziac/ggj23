@@ -13,12 +13,16 @@ func _ready():
 
 
 func _process(delta):
+	update()
+
+
+func _physics_process(delta):
+#	print(_prev_pos.distance_to(global_transform.origin - _prev_pos) < 0.0001)
 	var _new_velocity = lerp(velocity, (global_transform.origin - _prev_pos) * delta, smooth_movements)
 	acceleration = _new_velocity - velocity
 	velocity = _new_velocity
 	_prev_pos = global_transform.origin
-	print(acceleration.x)
-	update()
+	print(acceleration)
 
 
 func _draw():

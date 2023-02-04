@@ -1,8 +1,8 @@
 extends Node2D
 
 export (NodePath) var robot_wheel
-export (float) var rotate_scale = PI / 8
-export (float) var gravity_amount = 0.0
+export (float) var rotate_scale = PI / 8.0
+export (float) var gravity_amount = 0.1
 onready var _robot_wheel = get_node(robot_wheel)
 
 
