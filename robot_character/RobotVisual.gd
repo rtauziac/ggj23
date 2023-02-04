@@ -18,7 +18,6 @@ func _physics_process(delta):
 	rotation = clamp(rotation, -PI / 2.0, PI / 2.0)
 	var _rotate_amount = _bucket_accel.normalized().dot(Vector2.LEFT)
 	var _add_lean_amount = (_lean_factor * gravity_amount if rotation > 0 else -_lean_factor * gravity_amount) * delta
-	print("%f %f" % [_rotate_amount, _rotate_amount + _add_lean_amount])
 	_rotate_amount += _add_lean_amount
 	if Input.is_action_pressed("balanceLeft"):
 		_rotate_amount -= gravity_amount * delta * 1.5
