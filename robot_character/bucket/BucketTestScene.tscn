@@ -7,7 +7,6 @@
 script = ExtResource( 2 )
 
 [node name="Bucket" parent="." instance=ExtResource( 1 )]
-smooth_movements = 0.1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 236, -140 )
