@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://world/prefabs/platformB3.tscn" type="PackedScene" id=1]
 [ext_resource path="res://world/prefabs/platformA1.tscn" type="PackedScene" id=2]
@@ -12,6 +12,10 @@
 [ext_resource path="res://world/platformA2.tres" type="Texture" id=10]
 [ext_resource path="res://MovingPlatform.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Trampoline.tscn" type="PackedScene" id=12]
+[ext_resource path="res://world/prefabs/pente2.tscn" type="PackedScene" id=13]
+[ext_resource path="res://world/prefabs/platformC1.tscn" type="PackedScene" id=14]
+[ext_resource path="res://world/prefabs/platformA2.tscn" type="PackedScene" id=15]
+[ext_resource path="res://world/prefabs/trampolineFloor.tscn" type="PackedScene" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 101, 1123.13 )
@@ -78,7 +82,7 @@ rotation = -3.14159
 scale = Vector2( 0.3, -0.3 )
 
 [node name="PlayerCharacter" parent="." instance=ExtResource( 6 )]
-position = Vector2( 117, 451 )
+position = Vector2( 574, -641 )
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
 current = true
@@ -133,8 +137,72 @@ position = Vector2( -296, -2 )
 position = Vector2( 633, -367 )
 scale = Vector2( 0.7, 0.5 )
 
+[node name="etage4" type="Node2D" parent="."]
+
+[node name="KinematicBody2D2" parent="etage4" instance=ExtResource( 9 )]
+position = Vector2( 288, -626 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="KinematicBody2D3" parent="etage4" instance=ExtResource( 13 )]
+position = Vector2( 1023, -579 )
+scale = Vector2( -0.4, 0.4 )
+
+[node name="KinematicBody2D" parent="etage4" instance=ExtResource( 16 )]
+position = Vector2( -19, -684 )
+scale = Vector2( 0.3, 0.3 )
+
+[node name="Trampoline" parent="etage4" instance=ExtResource( 12 )]
+position = Vector2( -16, -759 )
+
+[node name="Sprite" parent="etage4/Trampoline" index="0"]
+scale = Vector2( 0.3, 0.5 )
+
+[node name="CollisionPolygon2D" parent="etage4/Trampoline" index="1"]
+polygon = PoolVector2Array( -82, -34, -131, 2, -138, 52, 136, 54, 139, 18, 84, -36, -10, -61 )
+
+[node name="surface" type="Node2D" parent="."]
+position = Vector2( 141, -113 )
+scale = Vector2( 0.991147, 1.35176 )
+
+[node name="KinematicBody2D" parent="surface" instance=ExtResource( 2 )]
+position = Vector2( 267, -849 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="CollisionShape2D" parent="surface/KinematicBody2D" index="1"]
+one_way_collision = false
+
+[node name="KinematicBody2D4" parent="surface" instance=ExtResource( 2 )]
+position = Vector2( 487, -849 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="CollisionShape2D" parent="surface/KinematicBody2D4" index="1"]
+one_way_collision = false
+
+[node name="KinematicBody2D5" parent="surface" instance=ExtResource( 2 )]
+position = Vector2( 708, -849 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="CollisionShape2D" parent="surface/KinematicBody2D5" index="1"]
+one_way_collision = false
+
+[node name="KinematicBody2D2" parent="surface" instance=ExtResource( 14 )]
+position = Vector2( 102.911, -773.804 )
+scale = Vector2( 0.30268, 0.221932 )
+
+[node name="KinematicBody2D3" parent="surface" instance=ExtResource( 14 )]
+position = Vector2( 880.798, -784.161 )
+scale = Vector2( 0.30268, 0.221932 )
+
+[node name="KinematicBody2D6" parent="surface" instance=ExtResource( 15 )]
+position = Vector2( -103.92, -673.195 )
+scale = Vector2( 0.3, 0.3 )
+
 [editable path="etage1/KinematicBody2D4"]
 [editable path="etage1/KinematicBody2D2"]
 [editable path="etage1/KinematicBody2D3"]
 [editable path="etage2/MovingPlatform"]
 [editable path="etage3/Trampoline"]
+[editable path="etage4/Trampoline"]
+[editable path="surface/KinematicBody2D"]
+[editable path="surface/KinematicBody2D4"]
+[editable path="surface/KinematicBody2D5"]
