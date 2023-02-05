@@ -81,13 +81,13 @@ scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 3 )
 
 [node name="MovingPlatform" type="RigidBody2D" parent="."]
-position = Vector2( -289, 898 )
+position = Vector2( -98, 532 )
 mode = 3
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
-finishPosition = Vector2( 300, 500 )
+transition_type = 9
 
 [node name="Sprite" type="Sprite" parent="MovingPlatform"]
 position = Vector2( -7.62939e-06, 1.00001 )
@@ -100,6 +100,9 @@ one_way_collision = true
 
 [node name="Tween" type="Tween" parent="MovingPlatform"]
 
+[node name="TargetPosition" type="Position2D" parent="MovingPlatform"]
+position = Vector2( 1164, 31 )
+
 [node name="TpToLevelBegining" type="Area2D" parent="."]
 position = Vector2( 109, 504 )
 collision_mask = 2
@@ -107,6 +110,7 @@ script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TpToLevelBegining"]
 shape = SubResource( 6 )
+disabled = true
 
 [node name="Position2D" type="Position2D" parent="TpToLevelBegining"]
 position = Vector2( 826, -414 )
