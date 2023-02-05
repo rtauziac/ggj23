@@ -13,4 +13,5 @@ func _on_end_cinematic_trigger():
 
 
 func _on_Area2D_body_entered(body):
-	_on_end_cinematic_trigger()
+	if GlobalVariables.bucket.auto_balance == false:
+		_on_end_cinematic_trigger()
