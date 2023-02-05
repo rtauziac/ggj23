@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://world/prefabs/platformB3.tscn" type="PackedScene" id=1]
 [ext_resource path="res://world/prefabs/platformA1.tscn" type="PackedScene" id=2]
@@ -30,6 +30,13 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 101, 1179.35 )
+
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://assets/Kenney High Square.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+size = 30
+font_data = SubResource( 2 )
 
 [node name="level" type="Node2D"]
 script = ExtResource( 8 )
@@ -416,6 +423,41 @@ position = Vector2( 352.444, -994.727 )
 rotation = 3.14159
 scale = Vector2( 0.8, -0.5 )
 texture = ExtResource( 25 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enable = true
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+margin_left = -129.0
+margin_top = 53.0
+margin_right = 671.0
+margin_bottom = 533.0
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control"]
+margin_left = 302.0
+margin_top = -13.0
+margin_right = 1102.0
+margin_bottom = 467.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer"]
+margin_left = 30.0
+margin_top = 184.0
+margin_right = 769.0
+margin_bottom = 296.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
+margin_right = 739.0
+margin_bottom = 73.0
+custom_fonts/font = SubResource( 3 )
+text = "Use \"Q\"/ \"D\" to move, \"Z\" to jump
+"
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
+margin_top = 77.0
+margin_right = 739.0
+margin_bottom = 112.0
+custom_fonts/font = SubResource( 3 )
+text = "and \"K\"/ \"L\" to stabilize the water bucket."
 
 [editable path="etage1/KinematicBody2D4"]
 [editable path="etage1/KinematicBody2D2"]
