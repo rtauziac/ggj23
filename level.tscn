@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://world/prefabs/platformB3.tscn" type="PackedScene" id=1]
 [ext_resource path="res://world/prefabs/platformA1.tscn" type="PackedScene" id=2]
@@ -16,9 +16,15 @@
 [ext_resource path="res://world/prefabs/platformC1.tscn" type="PackedScene" id=14]
 [ext_resource path="res://world/prefabs/platformA2.tscn" type="PackedScene" id=15]
 [ext_resource path="res://world/prefabs/trampolineFloor.tscn" type="PackedScene" id=16]
+[ext_resource path="res://world/rockA1.tres" type="Texture" id=17]
+[ext_resource path="res://world/rockA5.tres" type="Texture" id=18]
+[ext_resource path="res://world/rockA2.tres" type="Texture" id=19]
+[ext_resource path="res://world/rockA6.tres" type="Texture" id=20]
+[ext_resource path="res://world/rockA4.tres" type="Texture" id=21]
+[ext_resource path="res://world/rockA3.tres" type="Texture" id=22]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 101, 1123.13 )
+extents = Vector2( 101, 1179.35 )
 
 [node name="level" type="Node2D"]
 script = ExtResource( 8 )
@@ -27,7 +33,7 @@ script = ExtResource( 8 )
 
 [node name="Polygon2D" type="Polygon2D" parent="floor"]
 color = Color( 0.576471, 0.462745, 0.341176, 1 )
-polygon = PoolVector2Array( -683, 574, 367.695, 574.787, 478, 536, 577, 484, 734, 427, 897, 419, 1067, 345, 1136, 327, 1987, 576, 1971, 1368, -668, 1248 )
+polygon = PoolVector2Array( -1226, -1365, -21, -1353, -12, 578, 367.695, 574.787, 478, 536, 577, 484, 734, 427, 897, 419, 1139, 294, 1141, -1348, 2189, -1344, 2151, 1340, -1214, 1345 )
 
 [node name="KinematicBody2D2" parent="floor" instance=ExtResource( 5 )]
 position = Vector2( 333, 589 )
@@ -82,7 +88,7 @@ rotation = -3.14159
 scale = Vector2( 0.3, -0.3 )
 
 [node name="PlayerCharacter" parent="." instance=ExtResource( 6 )]
-position = Vector2( 574, -641 )
+position = Vector2( 117, 451 )
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
 current = true
@@ -98,12 +104,104 @@ robot_wheel = NodePath("../PlayerCharacter")
 [node name="StaticBody2D" type="StaticBody2D" parent="invisible_walls"]
 
 [node name="wallleft" type="CollisionShape2D" parent="invisible_walls/StaticBody2D"]
-position = Vector2( -104, -444.875 )
+position = Vector2( -119, -567 )
 shape = SubResource( 1 )
 
 [node name="walllright" type="CollisionShape2D" parent="invisible_walls/StaticBody2D"]
-position = Vector2( 1237, -472 )
+position = Vector2( 1242, -378 )
 shape = SubResource( 1 )
+
+[node name="wallSprites" type="Node2D" parent="invisible_walls/StaticBody2D"]
+
+[node name="RockA4" type="Sprite" parent="invisible_walls/StaticBody2D/wallSprites"]
+position = Vector2( -158.5, -1643.5 )
+texture = ExtResource( 21 )
+
+[node name="RockA3" type="Sprite" parent="invisible_walls/StaticBody2D/wallSprites"]
+position = Vector2( -32.5, -1393.5 )
+texture = ExtResource( 22 )
+
+[node name="RockA5" type="Sprite" parent="invisible_walls/StaticBody2D/wallSprites"]
+position = Vector2( -392.5, -1641.5 )
+rotation = -2.02284
+texture = ExtResource( 18 )
+
+[node name="RockA2" type="Sprite" parent="invisible_walls/StaticBody2D/wallSprites"]
+position = Vector2( -266.5, -1449.5 )
+texture = ExtResource( 19 )
+
+[node name="RockA6" type="Sprite" parent="invisible_walls/StaticBody2D/wallSprites"]
+position = Vector2( -450.5, -1474.5 )
+texture = ExtResource( 20 )
+
+[node name="RockA1" type="Sprite" parent="invisible_walls/StaticBody2D/wallSprites"]
+position = Vector2( -110.5, -1445.5 )
+texture = ExtResource( 17 )
+
+[node name="wallSprites2" type="Node2D" parent="invisible_walls/StaticBody2D"]
+position = Vector2( 1103, -380 )
+scale = Vector2( -0.7, 0.7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="RockA4" type="Sprite" parent="invisible_walls/StaticBody2D/wallSprites2"]
+position = Vector2( -158.5, -1643.5 )
+texture = ExtResource( 21 )
+
+[node name="RockA3" type="Sprite" parent="invisible_walls/StaticBody2D/wallSprites2"]
+position = Vector2( -32.5, -1393.5 )
+texture = ExtResource( 22 )
+
+[node name="RockA5" type="Sprite" parent="invisible_walls/StaticBody2D/wallSprites2"]
+position = Vector2( -392.5, -1641.5 )
+rotation = -2.02284
+texture = ExtResource( 18 )
+
+[node name="RockA2" type="Sprite" parent="invisible_walls/StaticBody2D/wallSprites2"]
+position = Vector2( -266.5, -1449.5 )
+texture = ExtResource( 19 )
+
+[node name="RockA6" type="Sprite" parent="invisible_walls/StaticBody2D/wallSprites2"]
+position = Vector2( -450.5, -1474.5 )
+texture = ExtResource( 20 )
+
+[node name="RockA1" type="Sprite" parent="invisible_walls/StaticBody2D/wallSprites2"]
+position = Vector2( -110.5, -1445.5 )
+texture = ExtResource( 17 )
+
+[node name="wallSprites3" type="Node2D" parent="invisible_walls/StaticBody2D"]
+position = Vector2( 346, -2305 )
+rotation = 1.9251
+scale = Vector2( -0.7, 0.7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="RockA4" type="Sprite" parent="invisible_walls/StaticBody2D/wallSprites3"]
+position = Vector2( -158.5, -1643.5 )
+texture = ExtResource( 21 )
+
+[node name="RockA3" type="Sprite" parent="invisible_walls/StaticBody2D/wallSprites3"]
+position = Vector2( -32.5, -1393.5 )
+texture = ExtResource( 22 )
+
+[node name="RockA5" type="Sprite" parent="invisible_walls/StaticBody2D/wallSprites3"]
+position = Vector2( -392.5, -1641.5 )
+rotation = -2.02284
+texture = ExtResource( 18 )
+
+[node name="RockA2" type="Sprite" parent="invisible_walls/StaticBody2D/wallSprites3"]
+position = Vector2( -266.5, -1449.5 )
+texture = ExtResource( 19 )
+
+[node name="RockA6" type="Sprite" parent="invisible_walls/StaticBody2D/wallSprites3"]
+position = Vector2( -450.5, -1474.5 )
+texture = ExtResource( 20 )
+
+[node name="RockA1" type="Sprite" parent="invisible_walls/StaticBody2D/wallSprites3"]
+position = Vector2( -110.5, -1445.5 )
+texture = ExtResource( 17 )
 
 [node name="etage2" type="Node2D" parent="."]
 
