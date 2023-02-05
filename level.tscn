@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://world/prefabs/platformB3.tscn" type="PackedScene" id=1]
 [ext_resource path="res://world/prefabs/platformA1.tscn" type="PackedScene" id=2]
@@ -36,6 +36,12 @@
 [ext_resource path="res://world/platformB1.tres" type="Texture" id=34]
 [ext_resource path="res://world/platformC1.tres" type="Texture" id=35]
 [ext_resource path="res://world/platformA3.tres" type="Texture" id=36]
+[ext_resource path="res://world/grassB6.tres" type="Texture" id=37]
+[ext_resource path="res://world/grassB1.tres" type="Texture" id=38]
+[ext_resource path="res://world/grassB3.tres" type="Texture" id=39]
+[ext_resource path="res://world/grassB5.tres" type="Texture" id=40]
+[ext_resource path="res://world/grassB2.tres" type="Texture" id=41]
+[ext_resource path="res://world/platformA1.tres" type="Texture" id=42]
 
 [sub_resource type="PhysicsMaterial" id=4]
 friction = 0.0
@@ -192,6 +198,48 @@ texture = ExtResource( 36 )
 position = Vector2( -59.6855, 79 )
 scale = Vector2( 0.6, 0.5 )
 texture = ExtResource( 35 )
+
+[node name="PlatformA3" type="Sprite" parent="floor/PlatformB5/PlatformA3"]
+position = Vector2( 956.356, 485 )
+scale = Vector2( 1.38803, 1 )
+texture = ExtResource( 36 )
+
+[node name="PlatformB4" type="Sprite" parent="floor/PlatformB5"]
+position = Vector2( 44.9376, 1277 )
+scale = Vector2( 1.38803, 1 )
+texture = ExtResource( 31 )
+
+[node name="PlatformA1" type="Sprite" parent="floor/PlatformB5/PlatformB4"]
+position = Vector2( 702, -1054 )
+texture = ExtResource( 42 )
+
+[node name="GrassB1" type="Sprite" parent="floor"]
+position = Vector2( 53, -176 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 38 )
+
+[node name="GrassB5" type="Sprite" parent="floor/GrassB1"]
+position = Vector2( 2140, 706.667 )
+texture = ExtResource( 40 )
+
+[node name="GrassB3" type="Sprite" parent="floor/GrassB1"]
+position = Vector2( 2300, 733.333 )
+texture = ExtResource( 39 )
+
+[node name="GrassB2" type="Sprite" parent="."]
+position = Vector2( 380.8, -1342 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 41 )
+
+[node name="GrassB3" type="Sprite" parent="."]
+position = Vector2( 389.8, -1355 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 39 )
+
+[node name="GrassB6" type="Sprite" parent="."]
+position = Vector2( 326.8, -1333 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 37 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color( 0.576471, 0.462745, 0.341176, 1 )
