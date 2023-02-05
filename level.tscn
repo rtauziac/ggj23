@@ -101,8 +101,9 @@ scale = Vector2( 0.3, -0.3 )
 position = Vector2( 117, 451 )
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
+position = Vector2( -3, 3 )
 current = true
-zoom = Vector2( 2, 2 )
+zoom = Vector2( 4, 4 )
 
 [node name="RobotVisual" parent="." instance=ExtResource( 7 )]
 position = Vector2( 116, 372 )
@@ -118,7 +119,7 @@ position = Vector2( -119, -567 )
 shape = SubResource( 1 )
 
 [node name="walllright" type="CollisionShape2D" parent="invisible_walls/StaticBody2D"]
-position = Vector2( 1242, -378 )
+position = Vector2( 1241, -774 )
 shape = SubResource( 1 )
 
 [node name="wallSprites" type="Node2D" parent="invisible_walls/StaticBody2D"]
