@@ -1,5 +1,8 @@
 extends Node2D
 
+signal is_leaking_state_change(state) 
+
+
 export (NodePath) var robot_wheel
 export (float) var rotate_scale = PI / 8.0
 export (float) var gravity_amount = 150.0
@@ -8,12 +11,21 @@ onready var _robot_wheel = get_node(robot_wheel)
 onready var _bucket = $bucketpinpoint/bucket_empty
 var _prev_water_level = 1
 var _water_level_on_signal = 1
+var _was_leaking = false
+
+
+func is_leaking():
+	return _prev_water_level > _water_level_on_signal
 
 
 func _process(_delta):
 	global_transform.origin = _robot_wheel.global_transform.origin
-	$bucketpinpoint/CPUParticles2D.emitting = _prev_water_level != _water_level_on_signal
+	$bucketpinpoint/CPUParticles2D.emitting = is_leaking()
+	if _was_leaking != is_leaking():
+		emit_signal("is_leaking_state_change", is_leaking())
+		
 	_prev_water_level = _water_level_on_signal
+	_was_leaking = is_leaking()
 	if _water_level_on_signal == 0:
 		auto_balance = true
 	
@@ -31,7 +43,6 @@ func _physics_process(delta):
 #		_rotate_amount -= gravity_amount * delta * 1.5
 #	if Input.is_action_pressed("balanceRight"):
 #		_rotate_amount += gravity_amount * delta * 1.5
-	print(Input.get_axis("balanceLeft", "balanceRight"))
 	_rotate_amount += Input.get_axis("balanceLeft", "balanceRight") * delta * 260
 	
 	if auto_balance:

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Gingembrepunk_v1.mp3-078e0af2a3398b976ca575697db060ef.mp3str"
+
+[deps]
+
+source_file="res://world/Gingembrepunk_v1.mp3"
+dest_files=[ "res://.import/Gingembrepunk_v1.mp3-078e0af2a3398b976ca575697db060ef.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

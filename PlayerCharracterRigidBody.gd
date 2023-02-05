@@ -34,6 +34,7 @@ func _physics_process(delta):
 			velocity.y = -JUMP_STRENGTH
 		#Trampoline
 		if colliders[0] is Trampoline:
+			$TrampolineAudioStream.play()
 			velocity.y = -TRAMPOLINE_STRENGTH
 
 	#Input
