@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://world/prefabs/platformB3.tscn" type="PackedScene" id=1]
 [ext_resource path="res://world/prefabs/platformA1.tscn" type="PackedScene" id=2]
@@ -9,16 +9,14 @@
 [ext_resource path="res://robot_character/RobotVisual.tscn" type="PackedScene" id=7]
 [ext_resource path="res://level.gd" type="Script" id=8]
 [ext_resource path="res://world/prefabs/mobile_pente4.tscn" type="PackedScene" id=9]
+[ext_resource path="res://world/platformA2.tres" type="Texture" id=10]
+[ext_resource path="res://MovingPlatform.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 101, 836.25 )
+extents = Vector2( 101, 1123.13 )
 
 [node name="level" type="Node2D"]
 script = ExtResource( 8 )
-
-[node name="KinematicBody2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1051, 106 )
-scale = Vector2( 0.3, 0.3 )
 
 [node name="floor" type="Node2D" parent="."]
 
@@ -95,13 +93,40 @@ robot_wheel = NodePath("../PlayerCharacter")
 [node name="StaticBody2D" type="StaticBody2D" parent="invisible_walls"]
 
 [node name="wallleft" type="CollisionShape2D" parent="invisible_walls/StaticBody2D"]
-position = Vector2( -104, -158 )
+position = Vector2( -104, -444.875 )
 shape = SubResource( 1 )
 
 [node name="walllright" type="CollisionShape2D" parent="invisible_walls/StaticBody2D"]
-position = Vector2( 1238, -158 )
+position = Vector2( 1237, -472 )
 shape = SubResource( 1 )
+
+[node name="etage2" type="Node2D" parent="."]
+
+[node name="KinematicBody2D" parent="etage2" instance=ExtResource( 2 )]
+position = Vector2( 1051, 106 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="KinematicBody2D2" parent="etage2" instance=ExtResource( 2 )]
+position = Vector2( 107, 106 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="MovingPlatform" parent="etage2" instance=ExtResource( 11 )]
+position = Vector2( 676, 106 )
+speed = 2.0
+transition_type = 1
+
+[node name="Sprite" parent="etage2/MovingPlatform" index="0"]
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 10 )
+
+[node name="CollisionShape2D" parent="etage2/MovingPlatform" index="1"]
+position = Vector2( 0.999969, -6.00003 )
+scale = Vector2( 0.3, 0.3 )
+
+[node name="TargetPosition" parent="etage2/MovingPlatform" index="3"]
+position = Vector2( -296, -2 )
 
 [editable path="etage1/KinematicBody2D4"]
 [editable path="etage1/KinematicBody2D2"]
 [editable path="etage1/KinematicBody2D3"]
+[editable path="etage2/MovingPlatform"]
