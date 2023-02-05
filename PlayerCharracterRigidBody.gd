@@ -46,8 +46,8 @@ func _physics_process(delta):
 
 	#Forces applying
 	apply_central_impulse(velocity * delta)
+	apply_torque_impulse(velocity.x * delta * 20.0)
 	
-
 	
 func _integrate_forces(state : Physics2DDirectBodyState):
 	if resetPosition != null:

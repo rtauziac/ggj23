@@ -114,7 +114,6 @@ zoom = Vector2( 2, 2 )
 
 [node name="RobotVisual" parent="." instance=ExtResource( 7 )]
 position = Vector2( 116, 372 )
-scale = Vector2( 0.25, 0.25 )
 robot_wheel = NodePath("../PlayerCharacter")
 
 [node name="invisible_walls" type="Node2D" parent="."]
@@ -440,22 +439,22 @@ margin_right = 1102.0
 margin_bottom = 467.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer"]
-margin_left = 30.0
-margin_top = 184.0
-margin_right = 769.0
-margin_bottom = 296.0
+margin_left = 202.0
+margin_top = 196.0
+margin_right = 597.0
+margin_bottom = 284.0
 
 [node name="Label" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
-margin_right = 739.0
-margin_bottom = 73.0
+margin_right = 395.0
+margin_bottom = 57.0
 custom_fonts/font = SubResource( 3 )
 text = "Use \"Q\"/ \"D\" to move, \"Z\" to jump
 "
 
 [node name="Label2" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
-margin_top = 77.0
-margin_right = 739.0
-margin_bottom = 112.0
+margin_top = 61.0
+margin_right = 395.0
+margin_bottom = 88.0
 custom_fonts/font = SubResource( 3 )
 text = "and \"K\"/ \"L\" to stabilize the water bucket."
 

@@ -3,6 +3,7 @@ extends RigidBody2D
 export (float) var speed = 5
 
 export (int, 0, 10) var transition_type = Tween.TRANS_LINEAR
+export (bool) var inout = true
 onready var _initial_position: Vector2 = global_position
 onready var _destination_position: Vector2 = $TargetPosition.global_position
 var ping = true
@@ -20,7 +21,7 @@ func move():
 		_destination_position if ping else _initial_position,
 		speed,
 		transition_type,
-		Tween.EASE_OUT
+		Tween.EASE_IN_OUT if inout else Tween.EASE_OUT
 	)
 	$Tween.start()
 

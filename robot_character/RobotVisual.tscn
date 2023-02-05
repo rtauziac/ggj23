@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://robot_character/robotwheelshadow.tres" type="Texture" id=1]
 [ext_resource path="res://robot_character/robotwheelcover.tres" type="Texture" id=2]
@@ -15,7 +15,25 @@
 [ext_resource path="res://robot_character/bucket/bucket_manager.tscn" type="PackedScene" id=13]
 [ext_resource path="res://robot_character/RobotVisual.gd" type="Script" id=14]
 
+[sub_resource type="Gradient" id=1]
+interpolation_mode = 1
+offsets = PoolRealArray( 0, 0.847953, 1 )
+colors = PoolColorArray( 0.785156, 0.785156, 0.785156, 0.780392, 0.953125, 0.953125, 0.953125, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture2D" id=2]
+gradient = SubResource( 1 )
+width = 24
+height = 24
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+fill_to = Vector2( 1, 0.5 )
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.0614525, 0.787709, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 0.628113, 0.815302, 0.980469, 1, 0.574219, 0.990021, 1, 1, 1, 1, 1, 0 )
+
 [node name="RobotVisual" type="Node2D"]
+scale = Vector2( 0.25, 0.25 )
 script = ExtResource( 14 )
 rotate_scale = 0.6
 
@@ -71,3 +89,24 @@ texture = ExtResource( 11 )
 [node name="pupil" type="Sprite" parent="bucketpinpoint/eye"]
 position = Vector2( 13, 0 )
 texture = ExtResource( 12 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="bucketpinpoint"]
+position = Vector2( -5, -282 )
+emitting = false
+amount = 20
+lifetime = 1.49
+lifetime_randomness = 0.4
+local_coords = false
+draw_order = 1
+texture = SubResource( 2 )
+emission_shape = 2
+emission_rect_extents = Vector2( 100, 1 )
+direction = Vector2( 0, -1 )
+gravity = Vector2( 0, 1600 )
+initial_velocity = 800.0
+initial_velocity_random = 0.21
+scale_amount = 0.38
+scale_amount_random = 0.47
+color_ramp = SubResource( 3 )
+
+[connection signal="water_level_changed" from="bucketpinpoint/bucket_empty" to="." method="_on_bucket_empty_water_level_changed"]

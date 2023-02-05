@@ -1,13 +1,17 @@
 extends Node2D
 
+signal water_level_changed
+
 
 export (float, 0, 1) var smooth_movements: float = 0.1
 export (float, 0, 1) var water_damp = 0.9
+export (float, 0, 1) var initial_water_amount = 0.85
+export (float) var water_loss_rate = 0.8
 onready var _prev_pos: Vector2 = transform.origin
 var velocity: Vector2 = Vector2.ZERO
 var acceleration: Vector2 = Vector2.ZERO
 var _debug = true
-var water_amount: float = 0.85
+onready var water_amount: float = initial_water_amount
 #var _ang_vel: float = 0.0
 
 
@@ -26,9 +30,10 @@ func _process(delta):
 	var tilt_level = clamp(Vector2.UP.rotated(global_rotation).dot(Vector2.UP), 0.0, 1.0)
 #	print(tilt_level)
 	if tilt_level < water_amount:
-		water_amount = max(water_amount - delta, 0)
+		water_amount = max(water_amount - delta * initial_water_amount * water_loss_rate, 0)
 		print(water_amount)
 		$BackBufferCopy/Node2D/Node2D/water.material.set("shader_param/waterLevel", water_amount)
+		emit_signal("water_level_changed", water_amount / initial_water_amount)
 	update()
 
 

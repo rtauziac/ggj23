@@ -134,6 +134,7 @@ shader = SubResource( 7 )
 [node name="bucket_empty" type="Sprite"]
 texture = ExtResource( 2 )
 script = ExtResource( 3 )
+water_loss_rate = 0.35
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 copy_mode = 2
