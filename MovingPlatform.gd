@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-export (float) var  speed = 5
+export (float) var speed = 5
 export (Vector2) var finishPosition = Vector2(300, 0)
 
 
