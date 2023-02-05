@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 export (float) var speed = 5
+
 export (int, 0, 10) var transition_type = Tween.TRANS_LINEAR
 onready var _initial_position: Vector2 = global_position
 onready var _destination_position: Vector2 = $TargetPosition.global_position

@@ -51,7 +51,7 @@ color = Color( 1, 0.631373, 0, 1 )
 polygon = PoolVector2Array( -512, -25, -512, 24, 513, 24, 512, -25 )
 
 [node name="PlayerCharacter" parent="." instance=ExtResource( 1 )]
-position = Vector2( 470, 520 )
+position = Vector2( 1535, 56 )
 collision_layer = 3
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
@@ -63,7 +63,7 @@ scale = Vector2( 0.266, 0.266 )
 robot_wheel = NodePath("../PlayerCharacter")
 
 [node name="Clock" type="Node2D" parent="."]
-position = Vector2( -140, 44 )
+position = Vector2( -840, 387 )
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true
@@ -76,8 +76,9 @@ script = ExtResource( 6 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Clock/Circle"]
 shape = SubResource( 4 )
 
-[node name="Tige" type="Sprite" parent="Clock"]
-scale = Vector2( 0.1, 0.1 )
+[node name="rotationPivot" type="Sprite" parent="Clock"]
+position = Vector2( 3.25, 0 )
+scale = Vector2( -0.0015625, 0.1 )
 texture = ExtResource( 3 )
 
 [node name="MovingPlatform" type="RigidBody2D" parent="."]
