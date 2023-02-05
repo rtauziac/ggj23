@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://world/prefabs/platformB3.tscn" type="PackedScene" id=1]
 [ext_resource path="res://world/prefabs/platformA1.tscn" type="PackedScene" id=2]
@@ -23,10 +23,10 @@
 [ext_resource path="res://world/rockA4.tres" type="Texture" id=21]
 [ext_resource path="res://world/rockA3.tres" type="Texture" id=22]
 [ext_resource path="res://world/prefabs/platformC2.tscn" type="PackedScene" id=23]
-[ext_resource path="res://world/gingembreD.tres" type="Texture" id=24]
-[ext_resource path="res://world/gingembreA.tres" type="Texture" id=25]
-[ext_resource path="res://world/gingembreB.tres" type="Texture" id=26]
-[ext_resource path="res://world/gingembreC.tres" type="Texture" id=27]
+[ext_resource path="res://world/gingembreD1.tres" type="Texture" id=24]
+[ext_resource path="res://world/gingembreA1.tres" type="Texture" id=25]
+[ext_resource path="res://world/gingembreB2.tres" type="Texture" id=26]
+[ext_resource path="res://world/gingembreC2.tres" type="Texture" id=27]
 [ext_resource path="res://world/rockA8.tres" type="Texture" id=28]
 [ext_resource path="res://world/rockA7.tres" type="Texture" id=29]
 [ext_resource path="res://world/rockA9.tres" type="Texture" id=30]
@@ -42,6 +42,16 @@
 [ext_resource path="res://world/grassB5.tres" type="Texture" id=40]
 [ext_resource path="res://world/grassB2.tres" type="Texture" id=41]
 [ext_resource path="res://world/platformA1.tres" type="Texture" id=42]
+[ext_resource path="res://world/gingembreA6.tres" type="Texture" id=43]
+[ext_resource path="res://world/gingembreA3.tres" type="Texture" id=44]
+[ext_resource path="res://world/gingembreD2.tres" type="Texture" id=45]
+[ext_resource path="res://world/gingembreA2.tres" type="Texture" id=46]
+[ext_resource path="res://world/gingembreA4.tres" type="Texture" id=47]
+[ext_resource path="res://world/gingembreD3.tres" type="Texture" id=48]
+[ext_resource path="res://world/gingembreA5.tres" type="Texture" id=49]
+[ext_resource path="res://world/gingembreB3.tres" type="Texture" id=50]
+[ext_resource path="res://world/gingembreC1.tres" type="Texture" id=51]
+[ext_resource path="res://world/gingembreB1.tres" type="Texture" id=52]
 
 [sub_resource type="PhysicsMaterial" id=4]
 friction = 0.0
@@ -497,17 +507,35 @@ scale = Vector2( 0.6, 0.5 )
 
 [node name="gingembre" type="Node2D" parent="surface"]
 position = Vector2( 138.224, 51.7843 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="haut" type="Node2D" parent="surface/gingembre"]
-visible = false
-position = Vector2( 0, -0.000183105 )
+position = Vector2( -67.5988, -104.308 )
+
+[node name="GingembreB4" type="Sprite" parent="surface/gingembre/haut"]
+position = Vector2( 387.43, -1393.74 )
+scale = Vector2( 0.429609, 0.268936 )
+texture = ExtResource( 50 )
+
+[node name="GingembreD3" type="Sprite" parent="surface/gingembre/haut"]
+position = Vector2( 499.297, -1135.65 )
+rotation = -0.0855211
+scale = Vector2( 0.201923, 0.123282 )
+texture = ExtResource( 48 )
+
+[node name="GingembreB3" type="Sprite" parent="surface/gingembre/haut"]
+position = Vector2( 471.239, -1243.11 )
+rotation = 1.25664
+scale = Vector2( 0.309949, 0.572569 )
+texture = ExtResource( 50 )
+
+[node name="GingembreB1" type="Sprite" parent="surface/gingembre/haut"]
+position = Vector2( 383.394, -1330.86 )
+scale = Vector2( 0.29916, 0.410184 )
+texture = ExtResource( 52 )
 
 [node name="Gingembre2" type="Sprite" parent="surface/gingembre/haut"]
-position = Vector2( 371.287, -1262.8 )
-scale = Vector2( 0.5, 0.7 )
+position = Vector2( 375.827, -1195.54 )
+scale = Vector2( 0.692174, 0.361175 )
 texture = ExtResource( 26 )
 
 [node name="Gingembre3" type="Sprite" parent="surface/gingembre/haut"]
@@ -516,10 +544,22 @@ rotation = -1.34739
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 27 )
 
+[node name="GingembreC2" type="Sprite" parent="surface/gingembre/haut"]
+position = Vector2( 507.102, -1267.48 )
+rotation = -0.125321
+scale = Vector2( 0.17067, 0.250206 )
+texture = ExtResource( 51 )
+
+[node name="GingembreC1" type="Sprite" parent="surface/gingembre/haut"]
+position = Vector2( 518.342, -1261.11 )
+rotation = -0.125321
+scale = Vector2( 0.17067, 0.160641 )
+texture = ExtResource( 51 )
+
 [node name="GingembreD" type="Sprite" parent="surface/gingembre/haut"]
-position = Vector2( 419.907, -1280.8 )
-rotation = -0.834267
-scale = Vector2( 0.2, 0.2 )
+position = Vector2( 505.428, -1282.78 )
+rotation = 2.41205
+scale = Vector2( 0.160586, 0.2 )
 texture = ExtResource( 24 )
 
 [node name="Gingembre4" type="Sprite" parent="surface/gingembre/haut"]
@@ -529,81 +569,94 @@ scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 27 )
 
 [node name="GingembreD2" type="Sprite" parent="surface/gingembre/haut"]
-position = Vector2( 325.612, -1380.96 )
+position = Vector2( 331.663, -1364.33 )
 rotation = 0.921534
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 24 )
 
-[node name="racines" type="Node2D" parent="surface/gingembre"]
+[node name="GingembreB2" type="Sprite" parent="surface/gingembre/haut"]
+position = Vector2( 453.148, -1157.21 )
+rotation = 0.733038
+scale = Vector2( 0.412435, 0.557295 )
+texture = ExtResource( 52 )
 
-[node name="Gingembre1" type="Sprite" parent="surface/gingembre/racines"]
-position = Vector2( 378.349, -1085.99 )
+[node name="GingembreC3" type="Sprite" parent="surface/gingembre/haut"]
+position = Vector2( 506.484, -1194 )
+rotation = 0.683419
+scale = Vector2( 0.174127, 0.179689 )
+texture = ExtResource( 27 )
+
+[node name="GingembreD4" type="Sprite" parent="surface/gingembre/haut"]
+position = Vector2( 518.591, -1176.24 )
+rotation = -0.154608
+scale = Vector2( 0.169692, 0.160989 )
+texture = ExtResource( 45 )
+
+[node name="GingembreD1" type="Sprite" parent="surface/gingembre/haut"]
+position = Vector2( 468.846, -1313.95 )
+rotation = -0.733038
+scale = Vector2( 0.33277, 0.2587 )
+texture = ExtResource( 24 )
+
+[node name="racines2" type="Node2D" parent="surface/gingembre"]
+position = Vector2( -18.1611, 34.0297 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="GingembreA9" type="Sprite" parent="surface/gingembre/racines2"]
+position = Vector2( 564.944, -968.9 )
+rotation = 2.82743
+scale = Vector2( 0.579372, 0.5 )
+texture = ExtResource( 44 )
+
+[node name="GingembreA8" type="Sprite" parent="surface/gingembre/racines2"]
+position = Vector2( 644.215, -952.921 )
+rotation = 0.596903
+scale = Vector2( 0.579372, 0.5 )
+texture = ExtResource( 49 )
+
+[node name="GingembreA7" type="Sprite" parent="surface/gingembre/racines2"]
+position = Vector2( 595.529, -1042.14 )
+rotation = 2.72271
 scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 46 )
+
+[node name="GingembreA6" type="Sprite" parent="surface/gingembre/racines2"]
+position = Vector2( 250.057, -975.165 )
+rotation = 2.34921
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 43 )
+
+[node name="GingembreA2" type="Sprite" parent="surface/gingembre/racines2"]
+position = Vector2( 489.332, -1034.95 )
+scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 25 )
 
-[node name="Gingembre7" type="Sprite" parent="surface/gingembre/racines"]
-position = Vector2( 513.377, -959.629 )
-rotation = -2.43648
-scale = Vector2( 0.2, -0.2 )
+[node name="GingembreA4" type="Sprite" parent="surface/gingembre/racines2"]
+position = Vector2( 300.913, -1045.56 )
+rotation = -0.418879
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 46 )
+
+[node name="GingembreA3" type="Sprite" parent="surface/gingembre/racines2"]
+position = Vector2( 395.724, -1169.77 )
+rotation = 2.99149
+texture = ExtResource( 44 )
+
+[node name="GingembreA1" type="Sprite" parent="surface/gingembre/racines2"]
+position = Vector2( 294.374, -1228.8 )
+rotation = 0.897099
+scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 25 )
 
-[node name="Gingembre6" type="Sprite" parent="surface/gingembre/racines"]
-position = Vector2( 391.466, -949.133 )
-scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 25 )
-
-[node name="Gingembre5" type="Sprite" parent="surface/gingembre/racines"]
-position = Vector2( 497.404, -1037.17 )
-rotation = 3.14159
-scale = Vector2( 0.8, -0.8 )
-texture = ExtResource( 25 )
-
-[node name="Gingembre2" type="Sprite" parent="surface/gingembre/racines"]
-position = Vector2( 445.51, -883.76 )
-scale = Vector2( 0.5, -0.5 )
-texture = ExtResource( 25 )
-
-[node name="Gingembre8" type="Sprite" parent="surface/gingembre/racines"]
-position = Vector2( 495.932, -664.659 )
-rotation = -2.43648
-scale = Vector2( 0.2, -0.5 )
-texture = ExtResource( 25 )
-
-[node name="Gingembre11" type="Sprite" parent="surface/gingembre/racines"]
-position = Vector2( 427.074, -633.372 )
-rotation = 0.513127
-scale = Vector2( 0.2, -0.5 )
-texture = ExtResource( 25 )
-
-[node name="Gingembre9" type="Sprite" parent="surface/gingembre/racines"]
-position = Vector2( 458.626, -746.902 )
-scale = Vector2( 0.3, -0.5 )
-texture = ExtResource( 25 )
-
-[node name="Gingembre10" type="Sprite" parent="surface/gingembre/racines"]
-position = Vector2( 564.564, -834.935 )
-rotation = 3.14159
-scale = Vector2( 0.8, -0.5 )
-texture = ExtResource( 25 )
-
-[node name="Gingembre12" type="Sprite" parent="surface/gingembre/racines"]
-position = Vector2( 274.43, -837.427 )
-scale = Vector2( 0.2, 0.5 )
-texture = ExtResource( 25 )
-
-[node name="Gingembre13" type="Sprite" parent="surface/gingembre/racines"]
-position = Vector2( 246.507, -906.693 )
-scale = Vector2( 0.3, -0.5 )
-texture = ExtResource( 25 )
-
-[node name="Gingembre14" type="Sprite" parent="surface/gingembre/racines"]
-position = Vector2( 352.444, -994.727 )
-rotation = 3.14159
-scale = Vector2( 0.8, -0.5 )
-texture = ExtResource( 25 )
+[node name="GingembreA5" type="Sprite" parent="surface/gingembre/racines2"]
+position = Vector2( 271.205, -915.161 )
+rotation = 0.825541
+scale = Vector2( 0.357572, 0.756961 )
+texture = ExtResource( 47 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 follow_viewport_enable = true
 
 [node name="Control" type="Control" parent="CanvasLayer"]
