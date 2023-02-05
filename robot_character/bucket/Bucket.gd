@@ -31,7 +31,7 @@ func _process(delta):
 #	print(tilt_level)
 	if tilt_level < water_amount:
 		water_amount = max(water_amount - delta * initial_water_amount * water_loss_rate, 0)
-		print(water_amount)
+		#print(water_amount)
 		$BackBufferCopy/Node2D/Node2D/water.material.set("shader_param/waterLevel", water_amount)
 		emit_signal("water_level_changed", water_amount / initial_water_amount)
 	update()

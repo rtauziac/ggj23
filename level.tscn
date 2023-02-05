@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://world/prefabs/platformB3.tscn" type="PackedScene" id=1]
 [ext_resource path="res://world/prefabs/platformA1.tscn" type="PackedScene" id=2]
@@ -28,8 +28,14 @@
 [ext_resource path="res://world/gingembreB.tres" type="Texture" id=26]
 [ext_resource path="res://world/gingembreC.tres" type="Texture" id=27]
 
+[sub_resource type="PhysicsMaterial" id=4]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 101, 1689.68 )
+
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 101, 1179.35 )
+extents = Vector2( 101, 1680.68 )
 
 [sub_resource type="DynamicFontData" id=2]
 font_path = "res://assets/Kenney High Square.ttf"
@@ -119,13 +125,14 @@ robot_wheel = NodePath("../PlayerCharacter")
 [node name="invisible_walls" type="Node2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="invisible_walls"]
+physics_material_override = SubResource( 4 )
 
 [node name="wallleft" type="CollisionShape2D" parent="invisible_walls/StaticBody2D"]
-position = Vector2( -119, -567 )
-shape = SubResource( 1 )
+position = Vector2( -119, -1077.32 )
+shape = SubResource( 5 )
 
 [node name="walllright" type="CollisionShape2D" parent="invisible_walls/StaticBody2D"]
-position = Vector2( 1241, -774 )
+position = Vector2( 1241, -1275.32 )
 shape = SubResource( 1 )
 
 [node name="wallSprites" type="Node2D" parent="invisible_walls/StaticBody2D"]
@@ -240,7 +247,7 @@ scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 10 )
 
 [node name="CollisionShape2D" parent="etage2/MovingPlatform" index="1"]
-position = Vector2( 0.999969, -6.00003 )
+position = Vector2( 0, -16.5 )
 scale = Vector2( 0.3, 0.3 )
 
 [node name="TargetPosition" parent="etage2/MovingPlatform" index="3"]
@@ -424,6 +431,7 @@ scale = Vector2( 0.8, -0.5 )
 texture = ExtResource( 25 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 follow_viewport_enable = true
 
 [node name="Control" type="Control" parent="CanvasLayer"]

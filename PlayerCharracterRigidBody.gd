@@ -25,12 +25,7 @@ func _ready():
 func _physics_process(delta):
 	#Init
 	var velocity = Vector2.ZERO
-
-	# Lateral movement
-	if Input.is_action_pressed("moveLeft"):
-		velocity.x -= WALK_SPEED
-	if Input.is_action_pressed("moveRight"):
-		velocity.x += WALK_SPEED
+	velocity.x = Input.get_axis("moveLeft", "moveRight") * WALK_SPEED
 
 	colliders = get_colliding_bodies()
 	if colliders.size() > 0:
