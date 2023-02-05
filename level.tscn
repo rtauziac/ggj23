@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://world/prefabs/platformB3.tscn" type="PackedScene" id=1]
 [ext_resource path="res://world/prefabs/platformA1.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://world/prefabs/mobile_pente4.tscn" type="PackedScene" id=9]
 [ext_resource path="res://world/platformA2.tres" type="Texture" id=10]
 [ext_resource path="res://MovingPlatform.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Trampoline.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 101, 1123.13 )
@@ -106,8 +107,8 @@ shape = SubResource( 1 )
 position = Vector2( 1051, 106 )
 scale = Vector2( 0.4, 0.4 )
 
-[node name="KinematicBody2D2" parent="etage2" instance=ExtResource( 2 )]
-position = Vector2( 107, 106 )
+[node name="KinematicBody2D3" parent="etage2" instance=ExtResource( 2 )]
+position = Vector2( 109, -110 )
 scale = Vector2( 0.4, 0.4 )
 
 [node name="MovingPlatform" parent="etage2" instance=ExtResource( 11 )]
@@ -126,7 +127,14 @@ scale = Vector2( 0.3, 0.3 )
 [node name="TargetPosition" parent="etage2/MovingPlatform" index="3"]
 position = Vector2( -296, -2 )
 
+[node name="etage3" type="Node2D" parent="."]
+
+[node name="Trampoline" parent="etage3" instance=ExtResource( 12 )]
+position = Vector2( 633, -367 )
+scale = Vector2( 0.7, 0.5 )
+
 [editable path="etage1/KinematicBody2D4"]
 [editable path="etage1/KinematicBody2D2"]
 [editable path="etage1/KinematicBody2D3"]
 [editable path="etage2/MovingPlatform"]
+[editable path="etage3/Trampoline"]

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Trampoline.gd" type="Script" id=1]
+[ext_resource path="res://world/trampoline1.tres" type="Texture" id=2]
+
+[node name="Trampoline" type="StaticBody2D"]
+position = Vector2( 1230, 450 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -212, -93, -432, 5, -468, 107, 459, 109, 443, 21, 287, -79, -30, -121 )
