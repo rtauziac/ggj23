@@ -103,7 +103,7 @@ position = Vector2( 117, 451 )
 [node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
 position = Vector2( -3, 3 )
 current = true
-zoom = Vector2( 4, 4 )
+zoom = Vector2( 2, 2 )
 
 [node name="RobotVisual" parent="." instance=ExtResource( 7 )]
 position = Vector2( 116, 372 )
@@ -319,7 +319,6 @@ __meta__ = {
 [node name="haut" type="Node2D" parent="surface/gingembre"]
 visible = false
 position = Vector2( 0, -0.000183105 )
-scale = Vector2( 1, 1 )
 
 [node name="Gingembre2" type="Sprite" parent="surface/gingembre/haut"]
 position = Vector2( 371.287, -1262.8 )
