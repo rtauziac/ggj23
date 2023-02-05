@@ -36,6 +36,11 @@ script = ExtResource( 8 )
 
 [node name="floor" type="Node2D" parent="."]
 
+[node name="Polygon2D2" type="Polygon2D" parent="floor"]
+position = Vector2( 0, 114 )
+color = Color( 0.14902, 0.117647, 0.0862745, 1 )
+polygon = PoolVector2Array( -1226, -1365, -21, -1353, 1141, -1348, 2189, -1344, 2151, 1340, -1214, 1345 )
+
 [node name="Polygon2D" type="Polygon2D" parent="floor"]
 color = Color( 0.576471, 0.462745, 0.341176, 1 )
 polygon = PoolVector2Array( -1226, -1365, -21, -1353, -12, 578, 367.695, 574.787, 478, 536, 577, 484, 734, 427, 897, 419, 1139, 294, 1141, -1348, 2189, -1344, 2151, 1340, -1214, 1345 )
