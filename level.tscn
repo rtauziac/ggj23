@@ -307,11 +307,11 @@ position = Vector2( -103.92, -673.195 )
 scale = Vector2( 0.3, 0.3 )
 
 [node name="KinematicBody2D7" parent="surface" instance=ExtResource( 23 )]
-position = Vector2( 492.359, -1040.87 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 511.324, -884.772 )
+scale = Vector2( 0.6, 0.5 )
 
 [node name="gingembre" type="Node2D" parent="surface"]
-position = Vector2( 175.554, -129.461 )
+position = Vector2( 138.224, 51.7843 )
 __meta__ = {
 "_edit_group_": true
 }
