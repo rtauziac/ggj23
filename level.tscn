@@ -228,14 +228,6 @@ position = Vector2( 53, -176 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 38 )
 
-[node name="GrassB5" type="Sprite" parent="floor/GrassB1"]
-position = Vector2( 2140, 706.667 )
-texture = ExtResource( 40 )
-
-[node name="GrassB3" type="Sprite" parent="floor/GrassB1"]
-position = Vector2( 2300, 733.333 )
-texture = ExtResource( 39 )
-
 [node name="GrassB2" type="Sprite" parent="."]
 position = Vector2( 380.8, -1342 )
 scale = Vector2( 0.4, 0.4 )
@@ -293,7 +285,7 @@ rotation = -3.14159
 scale = Vector2( 0.3, -0.3 )
 
 [node name="PlayerCharacter" parent="." instance=ExtResource( 6 )]
-position = Vector2( 117, 451 )
+position = Vector2( 114, 443 )
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
 position = Vector2( -3, 3 )
@@ -424,16 +416,26 @@ position = Vector2( 676, 106 )
 speed = 2.0
 transition_type = 1
 
-[node name="Sprite" parent="etage2/MovingPlatform" index="0"]
+[node name="GrassB4" type="Sprite" parent="etage2/MovingPlatform"]
+position = Vector2( 67, -62.0001 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 39 )
+
+[node name="Sprite" parent="etage2/MovingPlatform" index="1"]
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 10 )
 
-[node name="CollisionShape2D" parent="etage2/MovingPlatform" index="1"]
+[node name="CollisionShape2D" parent="etage2/MovingPlatform" index="2"]
 position = Vector2( 0, -16.5 )
 scale = Vector2( 0.3, 0.3 )
 
-[node name="TargetPosition" parent="etage2/MovingPlatform" index="3"]
+[node name="TargetPosition" parent="etage2/MovingPlatform" index="4"]
 position = Vector2( -296, -2 )
+
+[node name="GrassB5" type="Sprite" parent="etage2/MovingPlatform"]
+position = Vector2( 19, -69.9999 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 40 )
 
 [node name="etage3" type="Node2D" parent="."]
 
