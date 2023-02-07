@@ -33,6 +33,7 @@ config/icon="res://icon.png"
 [autoload]
 
 ExitHelper="*res://exithelper.gd"
+GlobalVariables="*res://global_variables.gd"
 
 [gui]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://world/prefabs/platformB3.tscn" type="PackedScene" id=1]
 [ext_resource path="res://world/prefabs/platformA1.tscn" type="PackedScene" id=2]
@@ -53,6 +53,7 @@
 [ext_resource path="res://world/gingembreC1.tres" type="Texture" id=51]
 [ext_resource path="res://world/gingembreB1.tres" type="Texture" id=52]
 [ext_resource path="res://PlayerCamera.gd" type="Script" id=53]
+[ext_resource path="res://grow.gd" type="Script" id=54]
 
 [sub_resource type="PhysicsMaterial" id=4]
 friction = 0.0
@@ -65,6 +66,97 @@ extents = Vector2( 101, 1680.68 )
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 190.414, 161.922 )
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -44.3933, 145.736 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Node2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "grow"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 0.297302, 1 ),
+"update": 0,
+"values": [ Vector2( -44.3933, 145.736 ), Vector2( -44.3933, -110.966 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Node2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 0.420448, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="DynamicFontData" id=2]
 font_path = "res://assets/Kenney High Square.ttf"
@@ -529,91 +621,103 @@ position = Vector2( 444.205, -1009.88 )
 shape = SubResource( 6 )
 
 [node name="haut" type="Node2D" parent="surface/gingembre"]
-position = Vector2( -67.5988, -104.308 )
+position = Vector2( -44.3933, 145.736 )
+z_index = -1
 
-[node name="GingembreB4" type="Sprite" parent="surface/gingembre/haut"]
-position = Vector2( 387.43, -1393.74 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="surface/gingembre/haut"]
+autoplay = "RESET"
+reset_on_save = false
+anims/RESET = SubResource( 8 )
+anims/grow = SubResource( 7 )
+script = ExtResource( 54 )
+
+[node name="Node2D" type="Node2D" parent="surface/gingembre/haut"]
+position = Vector2( 393.483, -1022.37 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="GingembreB4" type="Sprite" parent="surface/gingembre/haut/Node2D"]
+position = Vector2( -6.05341, -371.369 )
 scale = Vector2( 0.429609, 0.268936 )
 texture = ExtResource( 50 )
 
-[node name="GingembreD3" type="Sprite" parent="surface/gingembre/haut"]
-position = Vector2( 499.297, -1135.65 )
+[node name="GingembreD3" type="Sprite" parent="surface/gingembre/haut/Node2D"]
+position = Vector2( 105.814, -113.279 )
 rotation = -0.0855211
 scale = Vector2( 0.201923, 0.123282 )
 texture = ExtResource( 48 )
 
-[node name="GingembreB3" type="Sprite" parent="surface/gingembre/haut"]
-position = Vector2( 471.239, -1243.11 )
+[node name="GingembreB3" type="Sprite" parent="surface/gingembre/haut/Node2D"]
+position = Vector2( 77.7557, -220.739 )
 rotation = 1.25664
 scale = Vector2( 0.309949, 0.572569 )
 texture = ExtResource( 50 )
 
-[node name="GingembreB1" type="Sprite" parent="surface/gingembre/haut"]
-position = Vector2( 383.394, -1330.86 )
+[node name="GingembreB1" type="Sprite" parent="surface/gingembre/haut/Node2D"]
+position = Vector2( -10.0894, -308.489 )
 scale = Vector2( 0.29916, 0.410184 )
 texture = ExtResource( 52 )
 
-[node name="Gingembre2" type="Sprite" parent="surface/gingembre/haut"]
-position = Vector2( 375.827, -1195.54 )
+[node name="Gingembre2" type="Sprite" parent="surface/gingembre/haut/Node2D"]
+position = Vector2( -17.6564, -173.169 )
 scale = Vector2( 0.692174, 0.361175 )
 texture = ExtResource( 26 )
 
-[node name="Gingembre3" type="Sprite" parent="surface/gingembre/haut"]
-position = Vector2( 317.367, -1266.62 )
+[node name="Gingembre3" type="Sprite" parent="surface/gingembre/haut/Node2D"]
+position = Vector2( -76.1163, -244.249 )
 rotation = -1.34739
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 27 )
 
-[node name="GingembreC2" type="Sprite" parent="surface/gingembre/haut"]
-position = Vector2( 507.102, -1267.48 )
+[node name="GingembreC2" type="Sprite" parent="surface/gingembre/haut/Node2D"]
+position = Vector2( 113.619, -245.109 )
 rotation = -0.125321
 scale = Vector2( 0.17067, 0.250206 )
 texture = ExtResource( 51 )
 
-[node name="GingembreC1" type="Sprite" parent="surface/gingembre/haut"]
-position = Vector2( 518.342, -1261.11 )
+[node name="GingembreC1" type="Sprite" parent="surface/gingembre/haut/Node2D"]
+position = Vector2( 124.859, -238.739 )
 rotation = -0.125321
 scale = Vector2( 0.17067, 0.160641 )
 texture = ExtResource( 51 )
 
-[node name="GingembreD" type="Sprite" parent="surface/gingembre/haut"]
-position = Vector2( 505.428, -1282.78 )
+[node name="GingembreD" type="Sprite" parent="surface/gingembre/haut/Node2D"]
+position = Vector2( 111.945, -260.409 )
 rotation = 2.41205
 scale = Vector2( 0.160586, 0.2 )
 texture = ExtResource( 24 )
 
-[node name="Gingembre4" type="Sprite" parent="surface/gingembre/haut"]
-position = Vector2( 429.24, -1376.02 )
+[node name="Gingembre4" type="Sprite" parent="surface/gingembre/haut/Node2D"]
+position = Vector2( 35.7567, -353.649 )
 rotation = 0.921534
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 27 )
 
-[node name="GingembreD2" type="Sprite" parent="surface/gingembre/haut"]
-position = Vector2( 331.663, -1364.33 )
+[node name="GingembreD2" type="Sprite" parent="surface/gingembre/haut/Node2D"]
+position = Vector2( -61.8203, -341.959 )
 rotation = 0.921534
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 24 )
 
-[node name="GingembreB2" type="Sprite" parent="surface/gingembre/haut"]
-position = Vector2( 453.148, -1157.21 )
+[node name="GingembreB2" type="Sprite" parent="surface/gingembre/haut/Node2D"]
+position = Vector2( 59.6647, -134.839 )
 rotation = 0.733038
 scale = Vector2( 0.412435, 0.557295 )
 texture = ExtResource( 52 )
 
-[node name="GingembreC3" type="Sprite" parent="surface/gingembre/haut"]
-position = Vector2( 506.484, -1194 )
+[node name="GingembreC3" type="Sprite" parent="surface/gingembre/haut/Node2D"]
+position = Vector2( 113.001, -171.629 )
 rotation = 0.683419
 scale = Vector2( 0.174127, 0.179689 )
 texture = ExtResource( 27 )
 
-[node name="GingembreD4" type="Sprite" parent="surface/gingembre/haut"]
-position = Vector2( 518.591, -1176.24 )
+[node name="GingembreD4" type="Sprite" parent="surface/gingembre/haut/Node2D"]
+position = Vector2( 125.108, -153.869 )
 rotation = -0.154608
 scale = Vector2( 0.169692, 0.160989 )
 texture = ExtResource( 45 )
 
-[node name="GingembreD1" type="Sprite" parent="surface/gingembre/haut"]
-position = Vector2( 468.846, -1313.95 )
+[node name="GingembreD1" type="Sprite" parent="surface/gingembre/haut/Node2D"]
+position = Vector2( 75.3627, -291.579 )
 rotation = -0.733038
 scale = Vector2( 0.33277, 0.2587 )
 texture = ExtResource( 24 )
@@ -716,6 +820,7 @@ position = Vector2( 577, -1780 )
 zoom = Vector2( 3, 3 )
 
 [connection signal="body_entered" from="surface/gingembre/Area2D" to="PlayerCharacter/Camera2D" method="_on_Area2D_body_entered" flags=6]
+[connection signal="body_entered" from="surface/gingembre/Area2D" to="surface/gingembre/haut/AnimationPlayer" method="_on_Area2D_body_entered"]
 
 [editable path="etage1/KinematicBody2D4"]
 [editable path="etage1/KinematicBody2D2"]

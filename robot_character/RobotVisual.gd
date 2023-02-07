@@ -14,6 +14,10 @@ var _water_level_on_signal = 1
 var _was_leaking = false
 
 
+func _ready():
+	GlobalVariables.bucket = self
+
+
 func is_leaking():
 	return _prev_water_level > _water_level_on_signal
 
@@ -26,7 +30,7 @@ func _process(_delta):
 		
 	_prev_water_level = _water_level_on_signal
 	_was_leaking = is_leaking()
-	if _water_level_on_signal == 0:
+	if _water_level_on_signal == 0 and auto_balance == false:
 		auto_balance = true
 	
 	
