@@ -10,7 +10,7 @@ export (float) var water_loss_rate = 0.8
 onready var _prev_pos: Vector2 = transform.origin
 var velocity: Vector2 = Vector2.ZERO
 var acceleration: Vector2 = Vector2.ZERO
-var _debug = true
+var _debug = false
 onready var water_amount: float = initial_water_amount
 #var _ang_vel: float = 0.0
 

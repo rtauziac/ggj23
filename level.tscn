@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=72 format=2]
 
 [ext_resource path="res://world/prefabs/platformB3.tscn" type="PackedScene" id=1]
 [ext_resource path="res://world/prefabs/platformA1.tscn" type="PackedScene" id=2]
@@ -54,6 +54,38 @@
 [ext_resource path="res://world/gingembreB1.tres" type="Texture" id=52]
 [ext_resource path="res://PlayerCamera.gd" type="Script" id=53]
 [ext_resource path="res://grow.gd" type="Script" id=54]
+[ext_resource path="res://assets/sounds/Background/AMB_LP_GPE_Outside_v1.wav" type="AudioStream" id=55]
+[ext_resource path="res://assets/sounds/Background/Gingembrepunk_v1.mp3" type="AudioStream" id=56]
+[ext_resource path="res://assets/sounds/Background/AMB_LP_GPE_Underground_v1.wav" type="AudioStream" id=57]
+[ext_resource path="res://assets/pipe.tres" type="Texture" id=58]
+
+[sub_resource type="Gradient" id=9]
+interpolation_mode = 1
+offsets = PoolRealArray( 0, 0.702703 )
+colors = PoolColorArray( 1, 1, 1, 0.133333, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture2D" id=10]
+gradient = SubResource( 9 )
+width = 4
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+fill_to = Vector2( 1, 0.5 )
+
+[sub_resource type="Gradient" id=11]
+interpolation_mode = 1
+offsets = PoolRealArray( 0, 0.816216, 1 )
+colors = PoolColorArray( 0.882813, 0.882813, 0.882813, 1, 1, 1, 1, 0.776471, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture2D" id=12]
+gradient = SubResource( 11 )
+width = 25
+height = 25
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+fill_to = Vector2( 1, 0.5 )
+
+[sub_resource type="Curve" id=13]
+_data = [ Vector2( 0, 0 ), 0.0, 13.3774, 0, 0, Vector2( 0.157143, 1 ), 0.0256683, 0.0256683, 0, 0, Vector2( 1, 0 ), -2.17404, 0.0, 0, 0 ]
 
 [sub_resource type="PhysicsMaterial" id=4]
 friction = 0.0
@@ -65,7 +97,7 @@ extents = Vector2( 101, 1689.68 )
 extents = Vector2( 101, 1680.68 )
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 190.414, 161.922 )
+extents = Vector2( 214.398, 161.922 )
 
 [sub_resource type="Animation" id=8]
 length = 0.001
@@ -168,11 +200,21 @@ font_data = SubResource( 2 )
 [node name="level" type="Node2D"]
 script = ExtResource( 8 )
 
+[node name="sky" type="Polygon2D" parent="."]
+position = Vector2( -3300, -545 )
+z_index = -10
+color = Color( 0.529412, 0.788235, 0.956863, 1 )
+polygon = PoolVector2Array( -3058, -6698, 11283, -6325, 11995, 4931, -2753, 4592 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="floor" type="Node2D" parent="."]
 show_behind_parent = true
 
 [node name="Polygon2D2" type="Polygon2D" parent="floor"]
 position = Vector2( 0, 114 )
+z_index = -1
 color = Color( 0.14902, 0.117647, 0.0862745, 1 )
 polygon = PoolVector2Array( -1226, -1365, -21, -1353, 1141, -1348, 2189, -1344, 2151, 1340, -1214, 1345 )
 
@@ -194,11 +236,13 @@ __meta__ = {
 [node name="RockA3" type="Sprite" parent="floor"]
 modulate = Color( 0.223529, 0.188235, 0.188235, 1 )
 position = Vector2( 20, 506 )
+z_index = -1
 texture = ExtResource( 22 )
 
 [node name="RockA4" type="Sprite" parent="floor"]
 modulate = Color( 0.223529, 0.188235, 0.188235, 1 )
 position = Vector2( 282, 426 )
+z_index = -1
 texture = ExtResource( 21 )
 
 [node name="RockA5" type="Sprite" parent="floor"]
@@ -324,6 +368,50 @@ position = Vector2( 53, -176 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 38 )
 
+[node name="Pipe" type="Sprite" parent="floor"]
+position = Vector2( 39, 171 )
+scale = Vector2( -0.25685, 0.25685 )
+texture = ExtResource( 58 )
+
+[node name="waterStream" type="Polygon2D" parent="floor/Pipe"]
+position = Vector2( -54.5066, 202.453 )
+z_index = -1
+color = Color( 0.509804, 0.803922, 1, 0.776471 )
+polygon = PoolVector2Array( 136.266, -7.78668, 140.16, 1094.02, 354.292, 1094.02, 350.399, 1436.64, -1502.82, 1452.21, -1428.85, 1094.02, -132.373, 1094.02, -128.48, -7.78668 )
+
+[node name="waterFall" type="CPUParticles2D" parent="floor/Pipe/waterStream"]
+position = Vector2( 0, 112.906 )
+amount = 14
+lifetime = 0.5
+preprocess = 1.0
+local_coords = false
+texture = SubResource( 10 )
+emission_shape = 2
+emission_rect_extents = Vector2( 100, 100 )
+direction = Vector2( 0, 1 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 1700.0
+
+[node name="ecume" type="CPUParticles2D" parent="floor/Pipe/waterStream"]
+position = Vector2( -35.0399, 1113.49 )
+amount = 30
+lifetime = 0.6
+preprocess = 1.0
+local_coords = false
+texture = SubResource( 12 )
+emission_shape = 2
+emission_rect_extents = Vector2( 160, 40 )
+direction = Vector2( 0, -1 )
+spread = 40.0
+gravity = Vector2( 0, 1200 )
+initial_velocity = 1600.0
+initial_velocity_random = 0.31
+scale_amount = 0.46
+scale_amount_random = 1.0
+scale_amount_curve = SubResource( 13 )
+color = Color( 0.756863, 0.921569, 1, 1 )
+
 [node name="GrassB2" type="Sprite" parent="."]
 position = Vector2( 380.8, -1342 )
 scale = Vector2( 0.4, 0.4 )
@@ -341,7 +429,7 @@ texture = ExtResource( 37 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color( 0.576471, 0.462745, 0.341176, 1 )
-polygon = PoolVector2Array( -1226, -1365, -21, -1353, -12, 578, 367.695, 574.787, 478, 536, 577, 484, 734, 427, 897, 419, 1139, 294, 1141, -1348, 2189, -1344, 2151, 1340, -1214, 1345 )
+polygon = PoolVector2Array( -1226, -1365, -18, -1367, -12, 578, 367.695, 574.787, 478, 536, 577, 484, 734, 427, 897, 419, 1139, 294, 1141, -1348, 2189, -1344, 2151, 1340, -1214, 1345 )
 
 [node name="etage1" type="Node2D" parent="."]
 
@@ -380,22 +468,12 @@ position = Vector2( 998, 358 )
 rotation = -3.14159
 scale = Vector2( 0.3, -0.3 )
 
-[node name="PlayerCharacter" parent="." instance=ExtResource( 6 )]
-position = Vector2( 114, 443 )
-collision_layer = 2
-
-[node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
-position = Vector2( -3, 3 )
-current = true
-zoom = Vector2( 2, 2 )
-script = ExtResource( 53 )
-end_camera = NodePath("../../ending")
-
-[node name="Tween" type="Tween" parent="PlayerCharacter/Camera2D"]
-
-[node name="RobotVisual" parent="." instance=ExtResource( 7 )]
-position = Vector2( 116, 372 )
-robot_wheel = NodePath("../PlayerCharacter")
+[node name="cave_sound" type="AudioStreamPlayer2D" parent="etage1"]
+position = Vector2( 622, 504 )
+stream = ExtResource( 57 )
+volume_db = 1.0
+autoplay = true
+bus = "environment"
 
 [node name="invisible_walls" type="Node2D" parent="."]
 
@@ -541,31 +619,51 @@ texture = ExtResource( 40 )
 [node name="etage3" type="Node2D" parent="."]
 
 [node name="Trampoline" parent="etage3" instance=ExtResource( 12 )]
-position = Vector2( 633, -367 )
+position = Vector2( 634, -337 )
 scale = Vector2( 0.7, 0.5 )
 
 [node name="etage4" type="Node2D" parent="."]
 
 [node name="KinematicBody2D2" parent="etage4" instance=ExtResource( 9 )]
-position = Vector2( 288, -626 )
+position = Vector2( 275, -683 )
 scale = Vector2( 0.4, 0.4 )
 
 [node name="KinematicBody2D3" parent="etage4" instance=ExtResource( 13 )]
-position = Vector2( 1023, -579 )
+position = Vector2( 1038, -586 )
 scale = Vector2( -0.4, 0.4 )
 
 [node name="KinematicBody2D" parent="etage4" instance=ExtResource( 16 )]
-position = Vector2( -19, -684 )
+position = Vector2( -5, -726 )
 scale = Vector2( 0.3, 0.3 )
 
 [node name="Trampoline" parent="etage4" instance=ExtResource( 12 )]
-position = Vector2( -16, -759 )
+position = Vector2( -6, -804 )
 
 [node name="Sprite" parent="etage4/Trampoline" index="0"]
 scale = Vector2( 0.3, 0.5 )
 
 [node name="CollisionPolygon2D" parent="etage4/Trampoline" index="1"]
 polygon = PoolVector2Array( -82, -34, -131, 2, -138, 52, 136, 54, 139, 18, 84, -36, -10, -61 )
+
+[node name="PlayerCharacter" parent="." instance=ExtResource( 6 )]
+position = Vector2( 107, 485 )
+collision_layer = 2
+continuous_cd = 2
+TRAMPOLINE_STRENGTH = 220.0
+
+[node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
+current = true
+zoom = Vector2( 2, 2 )
+script = ExtResource( 53 )
+end_camera = NodePath("../../ending")
+
+[node name="Tween" type="Tween" parent="PlayerCharacter/Camera2D"]
+
+[node name="RobotVisual" parent="." instance=ExtResource( 7 )]
+position = Vector2( 118, 415 )
+robot_wheel = NodePath("../PlayerCharacter")
+gravity_amount = 0.015
+auto_balance = true
 
 [node name="surface" type="Node2D" parent="."]
 position = Vector2( 141, -113 )
@@ -593,7 +691,7 @@ scale = Vector2( 0.4, 0.4 )
 one_way_collision = false
 
 [node name="KinematicBody2D2" parent="surface" instance=ExtResource( 14 )]
-position = Vector2( 102.911, -773.804 )
+position = Vector2( 105.938, -802.657 )
 scale = Vector2( 0.30268, 0.221932 )
 
 [node name="KinematicBody2D3" parent="surface" instance=ExtResource( 14 )]
@@ -601,7 +699,7 @@ position = Vector2( 880.798, -784.161 )
 scale = Vector2( 0.30268, 0.221932 )
 
 [node name="KinematicBody2D6" parent="surface" instance=ExtResource( 15 )]
-position = Vector2( -103.92, -673.195 )
+position = Vector2( -100.893, -699.089 )
 scale = Vector2( 0.3, 0.3 )
 
 [node name="KinematicBody2D7" parent="surface" instance=ExtResource( 23 )]
@@ -617,7 +715,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="surface/gingembre/Area2D"]
-position = Vector2( 444.205, -1009.88 )
+position = Vector2( 420.221, -1009.88 )
 shape = SubResource( 6 )
 
 [node name="haut" type="Node2D" parent="surface/gingembre"]
@@ -780,6 +878,14 @@ rotation = 0.825541
 scale = Vector2( 0.357572, 0.756961 )
 texture = ExtResource( 47 )
 
+[node name="outside_sounds" type="AudioStreamPlayer2D" parent="surface"]
+position = Vector2( 512.538, -1577.2 )
+stream = ExtResource( 55 )
+volume_db = 2.0
+autoplay = true
+max_distance = 1500.0
+bus = "environment"
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enable = true
 
@@ -819,8 +925,14 @@ text = "and \"K\"/ \"L\" to stabilize the water bucket."
 position = Vector2( 577, -1780 )
 zoom = Vector2( 3, 3 )
 
-[connection signal="body_entered" from="surface/gingembre/Area2D" to="PlayerCharacter/Camera2D" method="_on_Area2D_body_entered" flags=6]
-[connection signal="body_entered" from="surface/gingembre/Area2D" to="surface/gingembre/haut/AnimationPlayer" method="_on_Area2D_body_entered"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 56 )
+volume_db = -10.259
+autoplay = true
+bus = "BGM"
+
+[connection signal="body_entered" from="surface/gingembre/Area2D" to="PlayerCharacter/Camera2D" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="surface/gingembre/Area2D" to="surface/gingembre/haut/AnimationPlayer" method="_on_Area2D_body_entered" flags=6]
 
 [editable path="etage1/KinematicBody2D4"]
 [editable path="etage1/KinematicBody2D2"]

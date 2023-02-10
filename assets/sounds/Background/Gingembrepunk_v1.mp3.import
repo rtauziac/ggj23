@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Gingembrepunk_v1.mp3-686a291587744d16be047176b1123acd.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/Background/Gingembrepunk_v1.mp3"
+dest_files=[ "res://.import/Gingembrepunk_v1.mp3-686a291587744d16be047176b1123acd.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

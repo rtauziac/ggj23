@@ -2,11 +2,10 @@
 
 [sub_resource type="AudioEffectReverb" id=1]
 resource_name = "Reverb"
-room_size = 0.39
-damping = 0.81
-spread = 0.61
-dry = 0.82
-wet = 0.39
+room_size = 0.69
+damping = 1.0
+spread = 0.52
+wet = 0.08
 
 [resource]
 bus/1/name = "environment"
@@ -21,5 +20,11 @@ bus/2/name = "robotfx"
 bus/2/solo = false
 bus/2/mute = false
 bus/2/bypass_fx = false
-bus/2/volume_db = -4.25003
+bus/2/volume_db = -7.26851
 bus/2/send = "environment"
+bus/3/name = "BGM"
+bus/3/solo = false
+bus/3/mute = false
+bus/3/bypass_fx = false
+bus/3/volume_db = 0.0
+bus/3/send = "Master"
