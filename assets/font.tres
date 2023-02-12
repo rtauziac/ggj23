@@ -1,8 +1,7 @@
 [gd_resource type="DynamicFont" load_steps=2 format=2]
 
-[sub_resource type="DynamicFontData" id=2]
-font_path = "res://assets/Kenney High Square.ttf"
+[ext_resource path="res://assets/Silver.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 30
-font_data = SubResource( 2 )
+size = 38
+font_data = ExtResource( 1 )

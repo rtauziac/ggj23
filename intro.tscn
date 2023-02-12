@@ -1,0 +1,149 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/robot_intro.tres" type="Texture" id=1]
+[ext_resource path="res://assets/font.tres" type="DynamicFont" id=2]
+
+[sub_resource type="Theme" id=1]
+default_font = ExtResource( 2 )
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Control
+
+var was_start_button_released_at_start = false
+
+func _ready() -> void:
+	was_start_button_released_at_start = not _is_continue_action_pressed()
+		
+
+
+func _process(delta: float) -> void:
+	if _is_continue_action_pressed() and was_start_button_released_at_start:
+		get_tree().change_scene_to(preload(\"res://level.tscn\"))
+	if not was_start_button_released_at_start:
+		was_start_button_released_at_start = not _is_continue_action_pressed()
+
+
+func _is_continue_action_pressed() -> bool:
+	return Input.is_joy_button_pressed(0, JOY_START) or Input.is_joy_button_pressed(1, JOY_START) or Input.is_joy_button_pressed(2, JOY_START) or Input.is_joy_button_pressed(3, JOY_START) or Input.is_key_pressed(KEY_ENTER)
+
+"
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("RichTextLabel:visible_characters")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "run_dialog"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("RichTextLabel:visible_characters")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0, 41, 41, 72 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 1 )
+script = SubResource( 4 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="robot" type="TextureRect" parent="."]
+margin_left = 107.0
+margin_top = 64.0
+margin_right = 404.0
+margin_bottom = 550.0
+texture = ExtResource( 1 )
+expand = true
+
+[node name="line" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -2.99997
+margin_top = -54.0
+margin_right = 157.0
+margin_bottom = -52.0
+rect_rotation = -202.1
+color = Color( 0, 0, 0, 1 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -76.0
+margin_top = -232.0
+margin_right = 199.0
+margin_bottom = -49.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_text = "I need to bring water to the gingember...
+So I can finally have some tea!"
+visible_characters = 0
+percent_visible = 0.0
+text = "I need to bring water to the gingember...
+So I can finally have some tea!"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "run_dialog"
+anims/RESET = SubResource( 2 )
+anims/run_dialog = SubResource( 3 )
+
+[node name="Label" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 88.0
+margin_top = -87.0
+margin_right = 128.0
+margin_bottom = -45.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Press Start / Enter key to play"
