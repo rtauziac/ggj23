@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://world/prefabs/platformB3.tscn" type="PackedScene" id=1]
 [ext_resource path="res://world/prefabs/platformA1.tscn" type="PackedScene" id=2]
@@ -87,6 +87,9 @@ fill_to = Vector2( 1, 0.5 )
 
 [sub_resource type="Curve" id=13]
 _data = [ Vector2( 0, 0 ), 0.0, 13.3774, 0, 0, Vector2( 0.157143, 1 ), 0.0256683, 0.0256683, 0, 0, Vector2( 1, 0 ), -2.17404, 0.0, 0, 0 ]
+
+[sub_resource type="RectangleShape2D" id=16]
+extents = Vector2( 58.3999, 486.245 )
 
 [sub_resource type="PhysicsMaterial" id=4]
 friction = 0.0
@@ -473,6 +476,16 @@ scale_amount_random = 1.0
 scale_amount_curve = SubResource( 13 )
 color = Color( 0.756863, 0.921569, 1, 1 )
 
+[node name="waterfall_refill" type="Area2D" parent="floor/Pipe"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor/Pipe/waterfall_refill"]
+position = Vector2( -50.6132, 895.884 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 16 )
+
 [node name="GrassB2" type="Sprite" parent="."]
 position = Vector2( 380.8, -1342 )
 scale = Vector2( 0.4, 0.4 )
@@ -661,7 +674,7 @@ scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 10 )
 
 [node name="CollisionShape2D" parent="etage2/MovingPlatform" index="1"]
-position = Vector2( 0, -16.5 )
+position = Vector2( 0, -16.75 )
 scale = Vector2( 0.3, 0.3 )
 
 [node name="TargetPosition" parent="etage2/MovingPlatform" index="3"]
@@ -780,7 +793,7 @@ position = Vector2( 420.221, -1009.88 )
 shape = SubResource( 6 )
 
 [node name="haut" type="Node2D" parent="surface/gingembre"]
-position = Vector2( -44.3933, -110.966 )
+position = Vector2( -44.3933, 145.736 )
 z_index = -1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="surface/gingembre/haut"]
@@ -792,6 +805,7 @@ script = ExtResource( 54 )
 
 [node name="Node2D" type="Node2D" parent="surface/gingembre/haut"]
 position = Vector2( 393.483, -1022.37 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="GingembreB4" type="Sprite" parent="surface/gingembre/haut/Node2D"]
 position = Vector2( -6.05341, -371.369 )
@@ -947,6 +961,7 @@ max_distance = 1500.0
 bus = "environment"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 follow_viewport_enable = true
 
 [node name="Control" type="Control" parent="CanvasLayer"]
@@ -955,6 +970,9 @@ margin_top = 53.0
 margin_right = 671.0
 margin_bottom = 533.0
 theme = SubResource( 14 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control"]
 margin_left = 302.0
@@ -985,6 +1003,8 @@ position = Vector2( 577, -1780 )
 zoom = Vector2( 3, 3 )
 
 [node name="Sprite" type="Sprite" parent="ending"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
 scale = Vector2( 66.25, 37.9688 )
 texture = SubResource( 15 )
 
@@ -994,6 +1014,7 @@ volume_db = -10.259
 autoplay = true
 bus = "BGM"
 
+[connection signal="body_entered" from="floor/Pipe/waterfall_refill" to="RobotVisual/bucketpinpoint/bucket_empty" method="refill"]
 [connection signal="body_entered" from="surface/gingembre/Area2D" to="PlayerCharacter/Camera2D" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="surface/gingembre/Area2D" to="surface/gingembre/haut/AnimationPlayer" method="_on_Area2D_body_entered" flags=6]
 
@@ -1003,6 +1024,7 @@ bus = "BGM"
 [editable path="etage2/MovingPlatform"]
 [editable path="etage3/Trampoline"]
 [editable path="etage4/Trampoline"]
+[editable path="RobotVisual"]
 [editable path="surface/KinematicBody2D"]
 [editable path="surface/KinematicBody2D4"]
 [editable path="surface/KinematicBody2D5"]

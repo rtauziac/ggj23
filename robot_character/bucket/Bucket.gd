@@ -49,3 +49,9 @@ func _draw():
 		draw_rect(Rect2(-5, -5, 10, 10), Color.rebeccapurple)
 		draw_line(Vector2.ZERO, velocity * 1000.0, Color.green)
 		draw_line(velocity * 1000, (velocity * 1000) + (acceleration * 10000), Color.blue)
+
+
+func refill(_body: Node) -> void:
+	water_amount = initial_water_amount
+	$BackBufferCopy/Node2D/Node2D/water.material.set("shader_param/waterLevel", water_amount)
+	emit_signal("water_level_changed", water_amount / initial_water_amount)

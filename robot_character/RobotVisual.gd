@@ -61,3 +61,4 @@ func _physics_process(delta):
 
 func _on_bucket_empty_water_level_changed(level):
 	_water_level_on_signal = level
+	auto_balance = false
