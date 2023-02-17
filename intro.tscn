@@ -68,7 +68,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 2, 3, 4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ 0, 41, 41, 72 ]
+"values": [ 0, 35, 35, 69 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Label:visible")
@@ -123,11 +123,12 @@ margin_top = -232.0
 margin_right = 199.0
 margin_bottom = -49.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
-bbcode_text = "I need to bring water to the gingember...
+bbcode_enabled = true
+bbcode_text = "I need to bring water to the ginger...
 So I can finally have some tea!"
 visible_characters = 0
 percent_visible = 0.0
-text = "I need to bring water to the gingember...
+text = "I need to bring water to the ginger...
 So I can finally have some tea!"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
